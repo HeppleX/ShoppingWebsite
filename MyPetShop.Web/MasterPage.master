@@ -1,0 +1,79 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+<%@ Register Src="~/UserControl/UserStatus.ascx" TagName="UserStatus" TagPrefix="uc" %>
+<%@ Register Src="~/UserControl/SiteMap.ascx" TagName="SiteMap" TagPrefix="uc" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>MyPetShop</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="Styles/bootstrap.css" rel="stylesheet" />
+    <link href="Styles/Style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
+        <ajaxToolkit:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" MinimumPrefixLength="1" ServiceMethod="GetStrings" ServicePath="~/SearchService.asmx" TargetControlID="TextBox1"></ajaxToolkit:AutoCompleteExtender> 
+    <header class="header">
+        <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/logo.gif" class="logo" />
+        <ul class="nav nav-pills">
+        <li class="navDark">
+            <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" ForeColor="White" PostBackUrl="~/Default.aspx">首页</asp:LinkButton> </li>
+        <li class="navDark">
+            <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" ForeColor="White" OnClick="LinkButton2_Click" >注册</asp:LinkButton> </li>
+        <li class="navDark">            
+           <asp:LinkButton ID="LinkButton3" runat="server" CausesValidation="False" ForeColor="White" OnClick="LinkButton3_Click" >登录</asp:LinkButton> </li>   
+        <li class="navDark">
+            <asp:LinkButton ID="LinkButton4" runat="server" CausesValidation="False" ForeColor="White" PostBackUrl="~/ShopCart.aspx">购物车</asp:LinkButton> </li>
+        <li class="navDark">
+            <asp:LinkButton ID="LinkButton5" runat="server" CausesValidation="False" ForeColor="White" PostBackUrl="~/Map.aspx">网站地图</asp:LinkButton> </li>
+        </ul>
+        <div class="status">
+            <uc:UserStatus ID="UserStatus1" runat="server" />
+        </div>
+    </header>
+        <nav class="sitemap">
+            <uc:SiteMap ID="SiteMap1" runat="server" />
+        </nav>
+        <section class="mainbody">
+            <div class="leftside">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+            </div>
+            <div class="rightside">
+                <ul class="search">
+                   <li>
+                       <asp:Image ID="Image2" runat="server" ImageUrl="Images/google_logo.gif" />
+                   </li>
+                    <li>
+                        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                    </li>
+                    <li>
+                        <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/Images/searchbutton.gif" CausesValidation="False" OnClick="ImageButton1_Click" />
+                    </li>
+                </ul>
+                <div>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server"></asp:ContentPlaceHolder>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </section>
+        <section class="mainbody">
+            <div class="leftside">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server"></asp:ContentPlaceHolder>
+            </div>
+            <div class="rightside">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder4" runat="server"></asp:ContentPlaceHolder>
+            </div>
+            <div style="clear:both;"></div>
+        </section>
+        <footer class="footer">
+            Copyright 2020 HEPPLE
+        </footer>
+    </form>
+</body>
+</html>
